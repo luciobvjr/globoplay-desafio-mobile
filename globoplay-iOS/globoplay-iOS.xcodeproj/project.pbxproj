@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXContainerItemProxy section */
@@ -30,21 +30,9 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		334CC6E32CE3EBB800ABC543 /* globoplay-iOS */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "globoplay-iOS";
-			sourceTree = "<group>";
-		};
-		334CC6F42CE3EBBB00ABC543 /* globoplay-iOSTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "globoplay-iOSTests";
-			sourceTree = "<group>";
-		};
-		334CC6FE2CE3EBBB00ABC543 /* globoplay-iOSUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "globoplay-iOSUITests";
-			sourceTree = "<group>";
-		};
+		334CC6E32CE3EBB800ABC543 /* globoplay-iOS */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "globoplay-iOS"; sourceTree = "<group>"; };
+		334CC6F42CE3EBBB00ABC543 /* globoplay-iOSTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "globoplay-iOSTests"; sourceTree = "<group>"; };
+		334CC6FE2CE3EBBB00ABC543 /* globoplay-iOSUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "globoplay-iOSUITests"; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +175,7 @@
 				};
 			};
 			buildConfigurationList = 334CC6DC2CE3EBB800ABC543 /* Build configuration list for PBXProject "globoplay-iOS" */;
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -195,7 +184,6 @@
 			);
 			mainGroup = 334CC6D82CE3EBB800ABC543;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			productRefGroup = 334CC6E22CE3EBB800ABC543 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
