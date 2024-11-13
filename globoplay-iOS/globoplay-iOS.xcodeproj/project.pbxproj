@@ -14,25 +14,16 @@
 			remoteGlobalIDString = 334CC6E02CE3EBB800ABC543;
 			remoteInfo = "globoplay-iOS";
 		};
-		334CC6FC2CE3EBBB00ABC543 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 334CC6D92CE3EBB800ABC543 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 334CC6E02CE3EBB800ABC543;
-			remoteInfo = "globoplay-iOS";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		334CC6E12CE3EBB800ABC543 /* globoplay-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "globoplay-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		334CC6F12CE3EBBB00ABC543 /* globoplay-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "globoplay-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		334CC6FB2CE3EBBB00ABC543 /* globoplay-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "globoplay-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		334CC6E32CE3EBB800ABC543 /* globoplay-iOS */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "globoplay-iOS"; sourceTree = "<group>"; };
 		334CC6F42CE3EBBB00ABC543 /* globoplay-iOSTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "globoplay-iOSTests"; sourceTree = "<group>"; };
-		334CC6FE2CE3EBBB00ABC543 /* globoplay-iOSUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "globoplay-iOSUITests"; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,13 +41,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		334CC6F82CE3EBBB00ABC543 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -65,7 +49,6 @@
 			children = (
 				334CC6E32CE3EBB800ABC543 /* globoplay-iOS */,
 				334CC6F42CE3EBBB00ABC543 /* globoplay-iOSTests */,
-				334CC6FE2CE3EBBB00ABC543 /* globoplay-iOSUITests */,
 				334CC6E22CE3EBB800ABC543 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -75,7 +58,6 @@
 			children = (
 				334CC6E12CE3EBB800ABC543 /* globoplay-iOS.app */,
 				334CC6F12CE3EBBB00ABC543 /* globoplay-iOSTests.xctest */,
-				334CC6FB2CE3EBBB00ABC543 /* globoplay-iOSUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -128,29 +110,6 @@
 			productReference = 334CC6F12CE3EBBB00ABC543 /* globoplay-iOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		334CC6FA2CE3EBBB00ABC543 /* globoplay-iOSUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 334CC70B2CE3EBBB00ABC543 /* Build configuration list for PBXNativeTarget "globoplay-iOSUITests" */;
-			buildPhases = (
-				334CC6F72CE3EBBB00ABC543 /* Sources */,
-				334CC6F82CE3EBBB00ABC543 /* Frameworks */,
-				334CC6F92CE3EBBB00ABC543 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				334CC6FD2CE3EBBB00ABC543 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				334CC6FE2CE3EBBB00ABC543 /* globoplay-iOSUITests */,
-			);
-			name = "globoplay-iOSUITests";
-			packageProductDependencies = (
-			);
-			productName = "globoplay-iOSUITests";
-			productReference = 334CC6FB2CE3EBBB00ABC543 /* globoplay-iOSUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -165,10 +124,6 @@
 						CreatedOnToolsVersion = 16.1;
 					};
 					334CC6F02CE3EBBB00ABC543 = {
-						CreatedOnToolsVersion = 16.1;
-						TestTargetID = 334CC6E02CE3EBB800ABC543;
-					};
-					334CC6FA2CE3EBBB00ABC543 = {
 						CreatedOnToolsVersion = 16.1;
 						TestTargetID = 334CC6E02CE3EBB800ABC543;
 					};
@@ -190,7 +145,6 @@
 			targets = (
 				334CC6E02CE3EBB800ABC543 /* globoplay-iOS */,
 				334CC6F02CE3EBBB00ABC543 /* globoplay-iOSTests */,
-				334CC6FA2CE3EBBB00ABC543 /* globoplay-iOSUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -204,13 +158,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		334CC6EF2CE3EBBB00ABC543 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		334CC6F92CE3EBBB00ABC543 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -234,13 +181,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		334CC6F72CE3EBBB00ABC543 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -248,11 +188,6 @@
 			isa = PBXTargetDependency;
 			target = 334CC6E02CE3EBB800ABC543 /* globoplay-iOS */;
 			targetProxy = 334CC6F22CE3EBBB00ABC543 /* PBXContainerItemProxy */;
-		};
-		334CC6FD2CE3EBBB00ABC543 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 334CC6E02CE3EBB800ABC543 /* globoplay-iOS */;
-			targetProxy = 334CC6FC2CE3EBBB00ABC543 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -492,40 +427,6 @@
 			};
 			name = Release;
 		};
-		334CC70C2CE3EBBB00ABC543 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8WZ2N4SSYS;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "br.vieira.junior.globoplay-iOSUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "globoplay-iOS";
-			};
-			name = Debug;
-		};
-		334CC70D2CE3EBBB00ABC543 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8WZ2N4SSYS;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "br.vieira.junior.globoplay-iOSUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "globoplay-iOS";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -552,15 +453,6 @@
 			buildConfigurations = (
 				334CC7092CE3EBBB00ABC543 /* Debug */,
 				334CC70A2CE3EBBB00ABC543 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		334CC70B2CE3EBBB00ABC543 /* Build configuration list for PBXNativeTarget "globoplay-iOSUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				334CC70C2CE3EBBB00ABC543 /* Debug */,
-				334CC70D2CE3EBBB00ABC543 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
