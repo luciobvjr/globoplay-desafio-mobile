@@ -1,0 +1,23 @@
+name: Swift Unit Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2 
+
+    - name: Set up Xcode
+      run: sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
+
+    - name: Build and test
+      run: xcodebuild test -scheme <globoplay-iOS> -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=18.0'
