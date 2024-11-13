@@ -14,7 +14,7 @@ struct ContentView: View {
         if isShowingSplashScreen {
             splashScreen
         } else {
-            contentView
+            TabBarView()
         }
     }
     
@@ -31,49 +31,6 @@ struct ContentView: View {
                     isShowingSplashScreen = false
                 }
             }
-    }
-    
-    private var contentView: some View {
-        TabView {
-            Tab {
-                NavigationStack {
-                    VStack {
-                        Image(systemName: "globe")
-                            .imageScale(.large)
-                            .foregroundStyle(.tint)
-                        Text("Tela de início")
-                    }
-                    .padding()
-                }
-            } label: {
-                Label {
-                    Text("Início")
-                } icon: {
-                    Image(systemName: "house")
-                }
-            }
-            
-            Tab {
-                NavigationStack {
-                    VStack {
-                        Image(systemName: "globe")
-                            .imageScale(.large)
-                            .foregroundStyle(.tint)
-                        Text("Minha lista")
-                    }
-                    .padding()
-                }
-            } label: {
-                Label {
-                    Text("Minha lista")
-                } icon: {
-                    Image(systemName: "star")
-                }
-            }
-        }
-        .onAppear {
-            UITabBar.appearance().backgroundColor = .black
-        }
     }
 }
 
