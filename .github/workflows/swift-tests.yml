@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
       
       - name: Set Default Scheme
-        working-directory: globoplay-desafio-mobile/globoplay-iOS
+        working-directory: globoplay-iOS
         run: |
           scheme_list=$(xcodebuild -list -json | tr -d "\n")
           default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
@@ -27,7 +27,7 @@ jobs:
         env:
           scheme: ${{ 'default' }}
           platform: ${{ 'iOS Simulator' }}
-        working-directory: globoplay-desafio-mobile/globoplay-iOS
+        working-directory: globoplay-iOS
         run: |
           device=`xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}' | sed -e "s/ Simulator$//"`
           if [ $scheme = default ]; then scheme=$(cat default); fi
@@ -39,7 +39,7 @@ jobs:
         env:
           scheme: ${{ 'default' }}
           platform: ${{ 'iOS Simulator' }}
-        working-directory: globoplay-desafio-mobile/globoplay-iOS
+        working-directory: globoplay-iOS
         run: |
           device=`xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}' | sed -e "s/ Simulator$//"`
           if [ $scheme = default ]; then scheme=$(cat default); fi
