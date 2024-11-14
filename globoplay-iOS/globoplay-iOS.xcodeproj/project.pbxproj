@@ -6,6 +6,14 @@
 	objectVersion = 70;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		33D30CDF2CE54B7B00968CA4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 33D30CDE2CE54B7B00968CA4 /* Alamofire */; };
+		33D30D3F2CE60B2100968CA4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 33D30D3E2CE60B2100968CA4 /* FirebaseAnalytics */; };
+		33D30D412CE60B2100968CA4 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 33D30D402CE60B2100968CA4 /* FirebaseAppCheck */; };
+		33D30D432CE60B2100968CA4 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 33D30D422CE60B2100968CA4 /* FirebaseCore */; };
+		33D30D452CE60B2100968CA4 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 33D30D442CE60B2100968CA4 /* FirebaseFunctions */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		334CC6F22CE3EBBB00ABC543 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -21,8 +29,25 @@
 		334CC6F12CE3EBBB00ABC543 /* globoplay-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "globoplay-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		33D30D362CE572D200968CA4 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 334CC6E02CE3EBB800ABC543 /* globoplay-iOS */;
+		};
+		33D30D3C2CE609D800968CA4 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"GoogleService-Info.plist",
+			);
+			target = 334CC6F02CE3EBBB00ABC543 /* globoplay-iOSTests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		334CC6E32CE3EBB800ABC543 /* globoplay-iOS */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "globoplay-iOS"; sourceTree = "<group>"; };
+		334CC6E32CE3EBB800ABC543 /* globoplay-iOS */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (33D30D362CE572D200968CA4 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 33D30D3C2CE609D800968CA4 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "globoplay-iOS"; sourceTree = "<group>"; };
 		334CC6F42CE3EBBB00ABC543 /* globoplay-iOSTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "globoplay-iOSTests"; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -31,6 +56,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33D30D3F2CE60B2100968CA4 /* FirebaseAnalytics in Frameworks */,
+				33D30D412CE60B2100968CA4 /* FirebaseAppCheck in Frameworks */,
+				33D30D452CE60B2100968CA4 /* FirebaseFunctions in Frameworks */,
+				33D30D432CE60B2100968CA4 /* FirebaseCore in Frameworks */,
+				33D30CDF2CE54B7B00968CA4 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +112,11 @@
 			);
 			name = "globoplay-iOS";
 			packageProductDependencies = (
+				33D30CDE2CE54B7B00968CA4 /* Alamofire */,
+				33D30D3E2CE60B2100968CA4 /* FirebaseAnalytics */,
+				33D30D402CE60B2100968CA4 /* FirebaseAppCheck */,
+				33D30D422CE60B2100968CA4 /* FirebaseCore */,
+				33D30D442CE60B2100968CA4 /* FirebaseFunctions */,
 			);
 			productName = "globoplay-iOS";
 			productReference = 334CC6E12CE3EBB800ABC543 /* globoplay-iOS.app */;
@@ -139,6 +174,10 @@
 			);
 			mainGroup = 334CC6D82CE3EBB800ABC543;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				33D30CDD2CE54B7B00968CA4 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				33D30D3D2CE60B2100968CA4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 334CC6E22CE3EBB800ABC543 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -322,12 +361,14 @@
 				DEVELOPMENT_TEAM = 8WZ2N4SSYS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "globoplay-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -357,12 +398,14 @@
 				DEVELOPMENT_TEAM = 8WZ2N4SSYS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "globoplay-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -389,7 +432,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8WZ2N4SSYS;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "br.vieira.junior.globoplay-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -412,7 +455,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8WZ2N4SSYS;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "br.vieira.junior.globoplay-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -458,6 +501,53 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		33D30CDD2CE54B7B00968CA4 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.1;
+			};
+		};
+		33D30D3D2CE60B2100968CA4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		33D30CDE2CE54B7B00968CA4 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33D30CDD2CE54B7B00968CA4 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		33D30D3E2CE60B2100968CA4 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33D30D3D2CE60B2100968CA4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		33D30D402CE60B2100968CA4 /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33D30D3D2CE60B2100968CA4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		33D30D422CE60B2100968CA4 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33D30D3D2CE60B2100968CA4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		33D30D442CE60B2100968CA4 /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33D30D3D2CE60B2100968CA4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 334CC6D92CE3EBB800ABC543 /* Project object */;
 }

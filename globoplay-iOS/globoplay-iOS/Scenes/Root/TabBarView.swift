@@ -21,13 +21,7 @@ struct TabBarView: View {
         TabView {
             Tab {
                 NavigationStack {
-                    VStack {
-                        Image(systemName: "globe")
-                            .imageScale(.large)
-                            .foregroundStyle(.tint)
-                        Text("Tela de início")
-                    }
-                    .padding()
+                    HomeView()
                 }
             } label: {
                 Label {
@@ -39,13 +33,7 @@ struct TabBarView: View {
             
             Tab {
                 NavigationStack {
-                    VStack {
-                        Image(systemName: "globe")
-                            .imageScale(.large)
-                            .foregroundStyle(.tint)
-                        Text("Minha lista")
-                    }
-                    .padding()
+                    MyListView()
                 }
             } label: {
                 Label {
@@ -63,13 +51,7 @@ struct TabBarView: View {
     private var tabBarView: some View {
         TabView {
             NavigationStack {
-                VStack {
-                    Image(systemName: "globe")
-                        .imageScale(.large)
-                        .foregroundStyle(.tint)
-                    Text("Tela de início")
-                }
-                .padding()
+                HomeView()
             }
             .tabItem {
                 Label {
@@ -80,13 +62,7 @@ struct TabBarView: View {
             }
             
             NavigationStack {
-                VStack {
-                    Image(systemName: "globe")
-                        .imageScale(.large)
-                        .foregroundStyle(.tint)
-                    Text("Minha lista")
-                }
-                .padding()
+                MyListView()
             }
             .tabItem {
                 Label {
