@@ -21,6 +21,10 @@ xcuserdata/
 **/xcshareddata/WorkspaceSettings.xcsettings
 *.DS_Store
 
+## Firebase
+firebase-debug.log
+GoogleService-Info.plist
+
 ### SwiftPackageManager ###
 .swiftpm/
 Package.resolved

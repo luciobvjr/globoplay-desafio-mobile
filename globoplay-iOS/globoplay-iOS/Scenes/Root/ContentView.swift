@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var isShowingSplashScreen: Bool = false
+    @State private var isShowingSplashScreen: Bool = true
     
     var body: some View {
         if isShowingSplashScreen {
