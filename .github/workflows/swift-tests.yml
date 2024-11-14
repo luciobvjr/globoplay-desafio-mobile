@@ -23,6 +23,11 @@ jobs:
           echo $default | cat >default
           echo Using default scheme: $default
 
+      - name: Resolve Dependencies
+        working-directory: globoplay-iOS
+        run: |
+            swift package resolve
+
       - name: Build
         env:
           scheme: ${{ 'default' }}
