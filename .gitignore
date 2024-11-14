@@ -23,6 +23,7 @@ xcuserdata/
 
 ## Firebase
 firebase-debug.log
+*GoogleService-Info.plist
 
 ### SwiftPackageManager ###
 .swiftpm/

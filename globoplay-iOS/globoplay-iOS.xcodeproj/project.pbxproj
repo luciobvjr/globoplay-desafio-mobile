@@ -37,17 +37,10 @@
 			);
 			target = 334CC6E02CE3EBB800ABC543 /* globoplay-iOS */;
 		};
-		33D30D3C2CE609D800968CA4 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"GoogleService-Info.plist",
-			);
-			target = 334CC6F02CE3EBBB00ABC543 /* globoplay-iOSTests */;
-		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		334CC6E32CE3EBB800ABC543 /* globoplay-iOS */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (33D30D362CE572D200968CA4 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 33D30D3C2CE609D800968CA4 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "globoplay-iOS"; sourceTree = "<group>"; };
+		334CC6E32CE3EBB800ABC543 /* globoplay-iOS */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (33D30D362CE572D200968CA4 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "globoplay-iOS"; sourceTree = "<group>"; };
 		334CC6F42CE3EBBB00ABC543 /* globoplay-iOSTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "globoplay-iOSTests"; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
