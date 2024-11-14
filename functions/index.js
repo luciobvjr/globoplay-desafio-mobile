@@ -10,58 +10,58 @@ if (!apiKey) {
   logger.error("Missing TMDB_API_KEY environment variable");
 }
 
-exports.searchForMovies = onCall(async (request, response) => {
-  const query = request.data.query;
-  if (!query) {
-    response.status(400).send("Missing query parameter");
-    return;
-  }
+exports.searchForMovies = onCall(
+    {
+      enforceAppCheck: true,
+    }, async (request) => {
+      const query = request.data.query;
 
-  try {
-    const url = `${baseURL}/search/movie?api_key=${apiKey}&query=${query}`;
-    logger.info(`Fetching URL: ${url}`);
-    const res = await fetch(url);
+      try {
+        const url = `${baseURL}/search/movie?api_key=${apiKey}&query=${query}`;
+        logger.info(`Fetching URL: ${url}`);
+        const res = await fetch(url);
 
-    if (!res) {
-      throw new Error("No response from fetch");
-    }
+        if (!res) {
+          throw new Error("No response from fetch");
+        }
 
-    logger.info(`Response status: ${res.status}`);
+        logger.info(`Response status: ${res.status}`);
 
-    if (!res.ok) {
-      throw new Error(`Error fetching movies: ${res.statusText}`);
-    }
+        if (!res.ok) {
+          throw new Error(`Error fetching movies: ${res.statusText}`);
+        }
 
-    return await res.json();
-  } catch (error) {
-    logger.error("Error fetching movies", error);
-  }
-});
+        return await res.json();
+      } catch (error) {
+        logger.error("Error fetching movies", error);
+      }
+    },
+);
 
-exports.searchForTVShows = onCall(async (request, response) => {
-  const query = request.data.query;
-  if (!query) {
-    response.status(400).send("Missing query parameter");
-    return;
-  }
+exports.searchForTVShows = onCall(
+    {
+      enforceAppCheck: true,
+    }, async (request) => {
+      const query = request.data.query;
 
-  try {
-    const url = `${baseURL}/search/tv?api_key=${apiKey}&query=${query}`;
-    logger.info(`Fetching URL: ${url}`);
-    const res = await fetch(url);
+      try {
+        const url = `${baseURL}/search/tv?api_key=${apiKey}&query=${query}`;
+        logger.info(`Fetching URL: ${url}`);
+        const res = await fetch(url);
 
-    if (!res) {
-      throw new Error("No response from fetch");
-    }
+        if (!res) {
+          throw new Error("No response from fetch");
+        }
 
-    logger.info(`Response status: ${res.status}`);
+        logger.info(`Response status: ${res.status}`);
 
-    if (!res.ok) {
-      throw new Error(`Error fetching movies: ${res.statusText}`);
-    }
+        if (!res.ok) {
+          throw new Error(`Error fetching movies: ${res.statusText}`);
+        }
 
-    return await res.json();
-  } catch (error) {
-    logger.error("Error fetching movies", error);
-  }
-});
+        return await res.json();
+      } catch (error) {
+        logger.error("Error fetching movies", error);
+      }
+    },
+);
