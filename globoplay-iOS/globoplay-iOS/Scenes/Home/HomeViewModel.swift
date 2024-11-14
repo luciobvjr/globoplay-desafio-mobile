@@ -20,6 +20,7 @@ class HomeViewModel {
     var tvShows: [TVShow] = []
     var selectedMediaType: MediaType = .movie
     var debouncedSearchTerm: String = ""
+    
     var searchTerm: String = "" {
         didSet {
             Task {
