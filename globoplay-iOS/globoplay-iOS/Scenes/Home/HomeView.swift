@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @Environment(\.modelContext) var modelContext
     @State private var homeViewModel: HomeViewModel = .init(networkService: NetworkService())
     
     var body: some View {
@@ -81,6 +82,9 @@ struct HomeView: View {
     private var movieListView: some View {
         ForEach(homeViewModel.movies, id: \.id) { movie in
             Text(movie.title)
+                .onTapGesture {
+                    homeViewModel.saveMovieToList(modelContext: modelContext, movie: movie)
+                }
         }
     }
     
@@ -92,5 +96,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+//    HomeView()
 }

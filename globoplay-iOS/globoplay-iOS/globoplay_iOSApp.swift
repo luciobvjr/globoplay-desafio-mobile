@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct globoplay_iOSApp: App {
@@ -14,6 +15,7 @@ struct globoplay_iOSApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .modelContainer(for: [Movie.self])
         }
     }
 }

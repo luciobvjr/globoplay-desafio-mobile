@@ -6,6 +6,7 @@
 //
 
 import SwiftUICore
+import SwiftData
 
 @Observable
 class HomeViewModel {
@@ -53,5 +54,10 @@ class HomeViewModel {
                 print(error)
             }
         }
+    }
+    
+    func saveMovieToList(modelContext: ModelContext ,movie: Movie) {
+        modelContext.insert(movie)
+        try? modelContext.save()
     }
 }

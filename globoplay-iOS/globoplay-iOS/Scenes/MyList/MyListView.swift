@@ -6,15 +6,21 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct MyListView: View {
+    @Environment(\.modelContext) var modelContext
+    @State private var myListViewModel: MyListViewModel = .init()
+    @Query var movies: [Movie]
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(Color.blue)
-            
-            Text("Minha lista")
+            ForEach(movies, id: \.self) { movie in
+                Text(movie.title)
+                    .onTapGesture {
+                        myListViewModel.removeMovieFromList(modelContext: modelContext, movie: movie)
+                    }
+            }
         }
         .padding()
     }
