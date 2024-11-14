@@ -14,10 +14,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
-        let providerFactory = AppCheckDebugProviderFactory()
-        AppCheck.setAppCheckProviderFactory(providerFactory)
-        
-        FirebaseApp.configure()
+        if ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] == nil {
+            let providerFactory = AppCheckDebugProviderFactory()
+            AppCheck.setAppCheckProviderFactory(providerFactory)
+            
+            FirebaseApp.configure()
+        }
         
         return true
         
