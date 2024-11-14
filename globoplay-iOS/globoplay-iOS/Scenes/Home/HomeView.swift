@@ -7,21 +7,6 @@
 
 import SwiftUI
 
-enum MediaType: String, CaseIterable, Identifiable {
-    case tv, movie
-    
-    var id: Self { self }
-    
-    var displayName: String {
-        switch self {
-        case .tv:
-            return "Séries"
-        case .movie:
-            return "Filmes"
-        }
-    }
-}
-
 struct HomeView: View {
     @State private var homeViewModel: HomeViewModel = .init(networkService: NetworkService())
     
