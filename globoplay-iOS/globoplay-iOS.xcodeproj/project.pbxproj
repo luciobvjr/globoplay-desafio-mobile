@@ -12,6 +12,11 @@
 		33D30D412CE60B2100968CA4 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 33D30D402CE60B2100968CA4 /* FirebaseAppCheck */; };
 		33D30D432CE60B2100968CA4 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 33D30D422CE60B2100968CA4 /* FirebaseCore */; };
 		33D30D452CE60B2100968CA4 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 33D30D442CE60B2100968CA4 /* FirebaseFunctions */; };
+		33D30D8E2CE67E4100968CA4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 33D30D8D2CE67E4100968CA4 /* Alamofire */; };
+		33D30D902CE67E5800968CA4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 33D30D8F2CE67E5800968CA4 /* FirebaseAnalytics */; };
+		33D30D922CE67E5800968CA4 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 33D30D912CE67E5800968CA4 /* FirebaseAppCheck */; };
+		33D30D942CE67E5800968CA4 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 33D30D932CE67E5800968CA4 /* FirebaseCore */; };
+		33D30D962CE67E5800968CA4 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 33D30D952CE67E5800968CA4 /* FirebaseFunctions */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +66,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33D30D902CE67E5800968CA4 /* FirebaseAnalytics in Frameworks */,
+				33D30D922CE67E5800968CA4 /* FirebaseAppCheck in Frameworks */,
+				33D30D962CE67E5800968CA4 /* FirebaseFunctions in Frameworks */,
+				33D30D942CE67E5800968CA4 /* FirebaseCore in Frameworks */,
+				33D30D8E2CE67E4100968CA4 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +82,7 @@
 			children = (
 				334CC6E32CE3EBB800ABC543 /* globoplay-iOS */,
 				334CC6F42CE3EBBB00ABC543 /* globoplay-iOSTests */,
+				33D30D8C2CE67E4100968CA4 /* Frameworks */,
 				334CC6E22CE3EBB800ABC543 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -83,6 +94,13 @@
 				334CC6F12CE3EBBB00ABC543 /* globoplay-iOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		33D30D8C2CE67E4100968CA4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,6 +151,11 @@
 			);
 			name = "globoplay-iOSTests";
 			packageProductDependencies = (
+				33D30D8D2CE67E4100968CA4 /* Alamofire */,
+				33D30D8F2CE67E5800968CA4 /* FirebaseAnalytics */,
+				33D30D912CE67E5800968CA4 /* FirebaseAppCheck */,
+				33D30D932CE67E5800968CA4 /* FirebaseCore */,
+				33D30D952CE67E5800968CA4 /* FirebaseFunctions */,
 			);
 			productName = "globoplay-iOSTests";
 			productReference = 334CC6F12CE3EBBB00ABC543 /* globoplay-iOSTests.xctest */;
@@ -536,6 +559,31 @@
 			productName = FirebaseCore;
 		};
 		33D30D442CE60B2100968CA4 /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33D30D3D2CE60B2100968CA4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
+		};
+		33D30D8D2CE67E4100968CA4 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33D30CDD2CE54B7B00968CA4 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		33D30D8F2CE67E5800968CA4 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33D30D3D2CE60B2100968CA4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		33D30D912CE67E5800968CA4 /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33D30D3D2CE60B2100968CA4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		33D30D932CE67E5800968CA4 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33D30D3D2CE60B2100968CA4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		33D30D952CE67E5800968CA4 /* FirebaseFunctions */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 33D30D3D2CE60B2100968CA4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFunctions;
