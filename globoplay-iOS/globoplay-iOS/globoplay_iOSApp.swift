@@ -15,7 +15,8 @@ struct globoplay_iOSApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .modelContainer(for: [Movie.self])
+                .modelContainer(for: [Movie.self,
+                                      TVShow.self])
         }
     }
 }

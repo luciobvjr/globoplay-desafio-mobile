@@ -20,6 +20,7 @@ class HomeViewModel {
     var tvShows: [TVShow] = []
     var selectedMediaType: MediaType = .movie
     var debouncedSearchTerm: String = ""
+    
     var searchTerm: String = "" {
         didSet {
             Task {
@@ -56,8 +57,13 @@ class HomeViewModel {
         }
     }
     
-    func saveMovieToList(modelContext: ModelContext ,movie: Movie) {
+    func saveMovieToList(modelContext: ModelContext, movie: Movie) {
         modelContext.insert(movie)
+        try? modelContext.save()
+    }
+    
+    func saveTvShowToList(modelContext: ModelContext, tvShow: TVShow) {
+        modelContext.insert(tvShow)
         try? modelContext.save()
     }
 }
