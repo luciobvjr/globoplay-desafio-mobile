@@ -12,8 +12,8 @@ struct MyListView: View {
     @Environment(\.modelContext) var modelContext
     
     @Query var movies: [Movie]
+    @Query var tvShows: [TVShow]
     @State private var myListViewModel: MyListViewModel = .init()
-//    @Query var tvShows: [TVShow]
     
     var body: some View {
         ScrollView {
@@ -97,10 +97,12 @@ struct MyListView: View {
     }
     
     private var tvShowListView: some View {
-        Text("TV Shows")
-//        ForEach(tvShows, id: \.id) { tvShow in
-//            Text(tvShow.name)
-//        }
+        ForEach(tvShows, id: \.id) { tvShow in
+            Text(tvShow.name)
+                .onTapGesture {
+                    myListViewModel.removeTvShowFromList(modelContext: modelContext, tvShow: tvShow)
+                }
+        }
     }
 }
 

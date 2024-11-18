@@ -24,4 +24,9 @@ class MyListViewModel {
         modelContext.delete(movie)
         try? modelContext.save()
     }
+    
+    func removeTvShowFromList(modelContext: ModelContext, tvShow: TVShow) {
+        modelContext.delete(tvShow)
+        try? modelContext.save()
+    }
 }

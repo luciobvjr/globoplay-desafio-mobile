@@ -91,6 +91,9 @@ struct HomeView: View {
     private var tvShowListView: some View {
         ForEach(homeViewModel.tvShows, id: \.id) { tvShow in
             Text(tvShow.name)
+                .onTapGesture {
+                    homeViewModel.saveTvShowToList(modelContext: modelContext, tvShow: tvShow)
+                }
         }
     }
 }

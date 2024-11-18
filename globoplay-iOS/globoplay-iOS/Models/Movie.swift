@@ -17,12 +17,6 @@ class Movie: Decodable {
         case id, title, genre_ids
     }
     
-    init(id: Int, title: String, genre_ids: [Int]) {
-        self.id = id
-        self.title = title
-        self.genre_ids = genre_ids
-    }
-    
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(Int.self, forKey: .id)
