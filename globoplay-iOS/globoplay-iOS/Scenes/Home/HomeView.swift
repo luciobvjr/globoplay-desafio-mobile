@@ -79,21 +79,76 @@ struct HomeView: View {
         }
     }
     
+    @ViewBuilder
     private var movieListView: some View {
-        ForEach(homeViewModel.movies, id: \.id) { movie in
-            Text(movie.title)
-                .onTapGesture {
-                    homeViewModel.saveMovieToList(modelContext: modelContext, movie: movie)
+        ScrollView {
+            LazyVStack(alignment: .leading, spacing: 24) {
+                ForEach(MovieGenre.allCases, id: \.rawValue) { genre in
+                    genreSection(genre: genre)
                 }
+                .task {
+                    for genre in MovieGenre.allCases {
+                        try? await homeViewModel.getMoviesByGenre(genre: genre, page: 1)
+                    }
+                }
+            }
         }
     }
     
-    private var tvShowListView: some View {
-        ForEach(homeViewModel.tvShows, id: \.id) { tvShow in
-            Text(tvShow.name)
-                .onTapGesture {
-                    homeViewModel.saveTvShowToList(modelContext: modelContext, tvShow: tvShow)
+    private func genreSection(genre: MovieGenre) -> some View {
+        Section {
+            ScrollView(.horizontal) {
+                LazyHStack {
+                    ForEach(homeViewModel.moviesByGenre[genre] ?? [], id: \.id) { movie in
+                        movieCell(movie: movie)
+                    }
                 }
+            }
+        } header: {
+            Text(genre.title)
+                .font(.title2)
+                .fontWeight(.bold)
+        }
+    }
+    
+    private func movieCell(movie: Movie) -> some View {
+        AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original" + movie.poster_path)) { phase in
+            switch phase {
+            case .empty:
+                ZStack {
+                    Rectangle()
+                        .foregroundStyle(Color.black.opacity(0.3))
+                    
+                    ProgressView()
+                }
+            case .success(let image):
+                image
+                    .resizable()
+            case .failure(let error):
+                Rectangle()
+                    .foregroundStyle(Color.black.opacity(0.3))
+            @unknown default:
+                Rectangle()
+                    .foregroundStyle(Color.black.opacity(0.3))
+            }
+        }
+        .frame(width: 92, height: 118)
+    }
+    
+    private var tvShowListView: some View {
+        List {
+            ForEach(TVShowGenre.allCases, id: \.rawValue) { genre in
+                Section {
+                    ForEach(homeViewModel.tvShows, id: \.id) { tvShow in
+                        Text(tvShow.name)
+                            .onTapGesture {
+                                homeViewModel.saveTvShowToList(modelContext: modelContext, tvShow: tvShow)
+                            }
+                    }
+                } header: {
+                    Text(genre.title)
+                }
+            }
         }
     }
 }

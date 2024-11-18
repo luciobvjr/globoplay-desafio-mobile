@@ -17,6 +17,7 @@ class HomeViewModel {
     }
     
     var movies: [Movie] = []
+    var moviesByGenre: [MovieGenre:[Movie]] = [:]
     var tvShows: [TVShow] = []
     var selectedMediaType: MediaType = .movie
     var debouncedSearchTerm: String = ""
@@ -32,6 +33,7 @@ class HomeViewModel {
     
     private var searchForMoviesTask: Task<Void, Error>?
     private var searchForTVShowsTask: Task<Void, Error>?
+    private var getMoviesByGenreTask: Task<Void, Error>?
     
     func getMovies(page: Int) async throws {
         searchForMoviesTask?.cancel()
@@ -55,6 +57,11 @@ class HomeViewModel {
                 print(error)
             }
         }
+    }
+    
+    func getMoviesByGenre(genre: MovieGenre, page: Int) async throws {
+        let result = try await networkService.getMoviesByGenre(genre: genre, page: page)
+        moviesByGenre[genre] = result
     }
     
     func saveMovieToList(modelContext: ModelContext, movie: Movie) {

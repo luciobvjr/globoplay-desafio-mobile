@@ -12,10 +12,28 @@ import FirebaseCore
 protocol NetworkServiceProtocol {
     func searchForMovies(searchTerm: String, page: Int) async throws -> [Movie]
     func searchForTVShows(searchTerm: String, page: Int) async throws -> [TVShow]
+    func getMoviesByGenre(genre: MovieGenre, page: Int) async throws -> [Movie]
 }
 
 struct NetworkService: NetworkServiceProtocol {
     private let functions = Functions.functions()
+    
+    func getMoviesByGenre(genre: MovieGenre, page: Int) async throws -> [Movie] {
+        let response = try await functions.httpsCallable("getMoviesByGenre").call(["genreId": genre.rawValue])
+        
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: response.data) else {
+            print("Error serializing response.data to JSON")
+            return []
+        }
+        
+        do {
+            let movieResponse = try JSONDecoder().decode(SearchResponse<Movie>.self, from: jsonData)
+            return movieResponse.results
+        } catch {
+            print("Error parsing JSON: \(error)")
+            return []
+        }
+    }
         
     func searchForMovies(searchTerm: String, page: Int) async throws -> [Movie] {
         let query = searchTerm + "&include_adult=false&language=pt-BR&page=\(page)"
