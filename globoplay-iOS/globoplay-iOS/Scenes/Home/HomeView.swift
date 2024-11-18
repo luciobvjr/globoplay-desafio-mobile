@@ -18,11 +18,11 @@ struct HomeView: View {
                 
                 customSegmentedPickerView
                 
-                if homeViewModel.selectedMediaType == .movie {
-                    movieListView
-                } else {
-                    tvShowListView
-                }
+                movieListView
+                    .opacity(homeViewModel.selectedMediaType == .movie ? 1 : 0)
+
+                tvShowListView
+                    .opacity(homeViewModel.selectedMediaType == .movie ? 0 : 1)
             }
             .padding()
         }
@@ -31,6 +31,11 @@ struct HomeView: View {
             Task {
                 try await homeViewModel.getMovies(page: 1)
                 try await homeViewModel.getTvShows(page: 1)
+            }
+        }
+        .task {
+            for genre in MovieGenre.allCases {
+                try? await homeViewModel.getMoviesByGenre(genre: genre, page: 1)
             }
         }
     }
@@ -86,11 +91,6 @@ struct HomeView: View {
                 ForEach(MovieGenre.allCases, id: \.rawValue) { genre in
                     genreSection(genre: genre)
                 }
-                .task {
-                    for genre in MovieGenre.allCases {
-                        try? await homeViewModel.getMoviesByGenre(genre: genre, page: 1)
-                    }
-                }
             }
         }
     }
@@ -103,7 +103,9 @@ struct HomeView: View {
                         movieCell(movie: movie)
                     }
                 }
+                .frame(minHeight: 118)
             }
+            .scrollIndicators(.hidden)
         } header: {
             Text(genre.title)
                 .font(.title2)
@@ -112,27 +114,20 @@ struct HomeView: View {
     }
     
     private func movieCell(movie: Movie) -> some View {
-        AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original" + movie.poster_path)) { phase in
-            switch phase {
-            case .empty:
-                ZStack {
-                    Rectangle()
-                        .foregroundStyle(Color.black.opacity(0.3))
-                    
-                    ProgressView()
-                }
-            case .success(let image):
-                image
-                    .resizable()
-            case .failure(let error):
+        AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original" + movie.poster_path)) { image in
+            image
+                .resizable()
+        } placeholder: {
+            ZStack {
                 Rectangle()
                     .foregroundStyle(Color.black.opacity(0.3))
-            @unknown default:
-                Rectangle()
-                    .foregroundStyle(Color.black.opacity(0.3))
+                
+                ProgressView()
             }
         }
         .frame(width: 92, height: 118)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .padding(.trailing, 8)
     }
     
     private var tvShowListView: some View {
