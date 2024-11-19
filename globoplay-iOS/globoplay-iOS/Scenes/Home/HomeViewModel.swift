@@ -16,10 +16,18 @@ class HomeViewModel {
         self.networkService = networkService
     }
     
-    var movies: [Movie] = []
-    var tvShows: [TVShow] = []
+    var searchedMovies: [Movie] = []
+    var moviesByGenre: [MovieGenre:[Movie]] = [:]
+    
+    var searchedTvShows: [TVShow] = []
+    var tvShowsByGenre: [TVShowGenre:[TVShow]] = [:]
+    
     var selectedMediaType: MediaType = .movie
     var debouncedSearchTerm: String = ""
+    
+    var isSearching: Bool {
+        !searchTerm.isEmpty
+    }
     
     var searchTerm: String = "" {
         didSet {
@@ -32,13 +40,14 @@ class HomeViewModel {
     
     private var searchForMoviesTask: Task<Void, Error>?
     private var searchForTVShowsTask: Task<Void, Error>?
+    private var getMoviesByGenreTask: Task<Void, Error>?
     
     func getMovies(page: Int) async throws {
         searchForMoviesTask?.cancel()
         
         searchForMoviesTask = Task {
             do {
-                movies = try await networkService.searchForMovies(searchTerm: debouncedSearchTerm, page: page)
+                searchedMovies = try await networkService.searchForMovies(searchTerm: debouncedSearchTerm, page: page)
             } catch {
                 print(error)
             }
@@ -50,9 +59,23 @@ class HomeViewModel {
         
         searchForTVShowsTask = Task {
             do {
-                tvShows = try await networkService.searchForTVShows(searchTerm: debouncedSearchTerm, page: page)
+                searchedTvShows = try await networkService.searchForTVShows(searchTerm: debouncedSearchTerm, page: page)
             } catch {
                 print(error)
+            }
+        }
+    }
+    
+    func getAllMediaByGenre(page: Int) async throws {
+        if selectedMediaType == .movie {
+            for genre in MovieGenre.allCases {
+                try? await getMediaByGenre(genre: genre, page: 1)
+            }
+        }
+        
+        if selectedMediaType == .tv {
+            for genre in TVShowGenre.allCases {
+                try? await getMediaByGenre(genre: genre, page: 1)
             }
         }
     }
@@ -65,5 +88,23 @@ class HomeViewModel {
     func saveTvShowToList(modelContext: ModelContext, tvShow: TVShow) {
         modelContext.insert(tvShow)
         try? modelContext.save()
+    }
+    
+    // MARK: - Private Methods
+    
+    private func getMediaByGenre(genre: any Genre, page: Int) async throws {
+        let result = try await networkService.getMediaByGenre(genre: genre, mediaType: selectedMediaType, page: page)
+        
+        if selectedMediaType == .movie,
+           let movies = result as? [Movie],
+           let movieGenre = genre as? MovieGenre {
+            moviesByGenre[movieGenre] = movies
+        }
+        
+        if selectedMediaType == .tv,
+           let tvShows = result as? [TVShow],
+           let tvShowGenre = genre as? TVShowGenre {
+            tvShowsByGenre[tvShowGenre] = tvShows
+        }
     }
 }

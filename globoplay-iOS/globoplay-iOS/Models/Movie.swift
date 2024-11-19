@@ -7,20 +7,29 @@
 
 import SwiftData
 
+protocol Media: Decodable {
+    var id: Int { get }
+    var title: String { get }
+    var genreIds: [Int] { get }
+    var posterPath: String? { get }
+}
+
 @Model
-class Movie: Decodable {
+class Movie: Decodable, Media {
     var id: Int
     var title: String
-    var genre_ids: [Int]
+    var genreIds: [Int]
+    var posterPath: String?
     
-    enum CodingKeys: CodingKey {
-        case id, title, genre_ids
+    enum CodingKeys: String, CodingKey {
+        case id, title, genreIds = "genre_ids", posterPath = "poster_path"
     }
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(Int.self, forKey: .id)
         self.title = try container.decode(String.self, forKey: .title)
-        self.genre_ids = try container.decode([Int].self, forKey: .genre_ids)
+        self.genreIds = try container.decode([Int].self, forKey: .genreIds)
+        self.posterPath = try? container.decode(String.self, forKey: .posterPath)
     }
 }

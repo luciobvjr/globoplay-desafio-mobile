@@ -17,7 +17,7 @@ class MyListViewModel {
     
     func search(searchTerm: String, movies: [Movie], tvShows: [TVShow]) {
         filteredMovies = movies.filter({ $0.title.contains(searchTerm) })
-        filteredTvShows = tvShows.filter({ $0.name.contains(searchTerm) })
+        filteredTvShows = tvShows.filter({ $0.title.contains(searchTerm) })
     }
     
     func removeMovieFromList(modelContext: ModelContext, movie: Movie) {

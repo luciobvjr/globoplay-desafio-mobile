@@ -18,24 +18,33 @@ struct HomeView: View {
                 
                 customSegmentedPickerView
                 
-                if homeViewModel.selectedMediaType == .movie {
-                    movieListView
+                if homeViewModel.isSearching {
+                    MediaGridView(medias: homeViewModel.selectedMediaType == .movie ?
+                                  homeViewModel.searchedMovies : homeViewModel.searchedTvShows)
                 } else {
-                    tvShowListView
+                    mediaByGenreView
                 }
             }
             .padding()
         }
         .background(Color.background)
-        .onChange(of: homeViewModel.debouncedSearchTerm) { _, newValue in
-            Task {
-                try await homeViewModel.getMovies(page: 1)
-                try await homeViewModel.getTvShows(page: 1)
-            }
+        .task(id: homeViewModel.debouncedSearchTerm) {
+            try? await homeViewModel.getMovies(page: 1)
+            try? await homeViewModel.getTvShows(page: 1)
+        }
+        .task(id: homeViewModel.selectedMediaType) {
+            try? await homeViewModel.getAllMediaByGenre(page: 1)
         }
     }
     
-    // MARK: - View components
+    private var mediaByGenreView: some View {
+        if homeViewModel.selectedMediaType == .movie {
+            MediaByGenreView(homeViewModel: $homeViewModel)
+        } else {
+            MediaByGenreView(homeViewModel: $homeViewModel)
+        }
+    }
+    
     private var customSegmentedPickerView: some View {
         HStack {
             Group {
@@ -78,26 +87,24 @@ struct HomeView: View {
                 .padding(.horizontal)
         }
     }
-    
-    private var movieListView: some View {
-        ForEach(homeViewModel.movies, id: \.id) { movie in
-            Text(movie.title)
-                .onTapGesture {
-                    homeViewModel.saveMovieToList(modelContext: modelContext, movie: movie)
-                }
-        }
-    }
-    
-    private var tvShowListView: some View {
-        ForEach(homeViewModel.tvShows, id: \.id) { tvShow in
-            Text(tvShow.name)
-                .onTapGesture {
-                    homeViewModel.saveTvShowToList(modelContext: modelContext, tvShow: tvShow)
-                }
-        }
-    }
 }
 
 #Preview {
-//    HomeView()
+    //    HomeView()
+}
+
+struct MediaGridView: View {
+    let medias: [Media]
+    let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+
+    var body: some View {
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: 16) {
+                ForEach(medias, id: \.id) { media in
+                    MediaCellView(media: media)
+                }
+            }
+            .padding()
+        }
+    }
 }
