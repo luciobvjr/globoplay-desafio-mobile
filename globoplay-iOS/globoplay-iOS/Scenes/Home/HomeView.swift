@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct HomeView: View {
-    @Environment(\.modelContext) var modelContext
     @State private var homeViewModel: HomeViewModel = .init(networkService: NetworkService())
     
     var body: some View {
@@ -20,7 +19,8 @@ struct HomeView: View {
                 
                 if homeViewModel.isSearching {
                     MediaGridView(medias: homeViewModel.selectedMediaType == .movie ?
-                                  homeViewModel.searchedMovies : homeViewModel.searchedTvShows)
+                                  homeViewModel.searchedMovies : homeViewModel.searchedTvShows,
+                                  selectedMediaType: homeViewModel.selectedMediaType)
                 } else {
                     mediaByGenreView
                 }

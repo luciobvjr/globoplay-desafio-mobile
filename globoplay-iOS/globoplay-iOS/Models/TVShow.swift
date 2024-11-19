@@ -27,4 +27,12 @@ class TVShow: Decodable, Media {
         self.posterPath = try? container.decode(String.self, forKey: .posterPath)
         self.overview = try? container.decode(String.self, forKey: .overview)
     }
+    
+    init(id: Int, title: String, genreIds: [Int], posterPath: String?, overview: String?) {
+        self.id = id
+        self.title = title
+        self.genreIds = genreIds
+        self.posterPath = posterPath
+        self.overview = overview
+    }
 }

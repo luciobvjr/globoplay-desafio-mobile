@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MediaGridView: View {
     let medias: [Media]
+    let selectedMediaType: MediaType
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
 
     var body: some View {
@@ -16,7 +17,7 @@ struct MediaGridView: View {
             LazyVGrid(columns: columns, spacing: 16) {
                 ForEach(medias, id: \.id) { media in
                     NavigationLink {
-                        MediaDetailsView(media: media)
+                        MediaDetailsView(media: media, selectedMediaType: selectedMediaType)
                     } label: {
                         MediaCellView(media: media)
                     }

@@ -36,7 +36,7 @@ struct MediaByGenreView: View {
                         let movieGenre = genre as? MovieGenre {
                         ForEach(homeViewModel.moviesByGenre[movieGenre] ?? [], id: \.id) { movie in
                             NavigationLink {
-                                MediaDetailsView(media: movie)
+                                MediaDetailsView(media: movie, selectedMediaType: .movie)
                             } label: {
                                 MediaCellView(media: movie)
                             }
@@ -44,7 +44,7 @@ struct MediaByGenreView: View {
                     } else if let tvShowGenre = genre as? TVShowGenre {
                         ForEach(homeViewModel.tvShowsByGenre[tvShowGenre] ?? [], id: \.id) { tvShow in
                             NavigationLink {
-                                MediaDetailsView(media: tvShow)
+                                MediaDetailsView(media: tvShow, selectedMediaType: .tv)
                             } label: {
                                 MediaCellView(media: tvShow)
                             }
