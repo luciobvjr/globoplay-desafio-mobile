@@ -13,10 +13,29 @@ protocol NetworkServiceProtocol {
     func searchForMovies(searchTerm: String, page: Int) async throws -> [Movie]
     func searchForTVShows(searchTerm: String, page: Int) async throws -> [TVShow]
     func getMediaByGenre(genre: any Genre, mediaType: MediaType, page: Int) async throws -> [Media]
+    func getRecommendations(mediaId: Int, mediaType: MediaType, page: Int) async throws -> [Media]
 }
 
 struct NetworkService: NetworkServiceProtocol {
     private let functions = Functions.functions()
+    
+    func getRecommendations(mediaId: Int, mediaType: MediaType, page: Int) async throws -> [Media] {
+        if mediaType == .movie {
+            let response = try await functions.httpsCallable("getRecommendations").call(["mediaId": mediaId,
+                                                                                         "mediaType": mediaType.rawValue])
+            let parsedResponse: SearchResponse<Movie>? = parseResponse(response: response)
+            return parsedResponse?.results ?? []
+        }
+        
+        if mediaType == .tv {
+            let response = try await functions.httpsCallable("getRecommendations").call(["mediaId": mediaId,
+                                                                                         "mediaType": mediaType.rawValue])
+            let parsedResponse: SearchResponse<TVShow>? = parseResponse(response: response)
+            return parsedResponse?.results ?? []
+        }
+        
+        return []
+    }
     
     func getMediaByGenre(genre: any Genre, mediaType: MediaType, page: Int) async throws -> [Media] {
         if mediaType == .movie, let movieGenre = genre as? MovieGenre {

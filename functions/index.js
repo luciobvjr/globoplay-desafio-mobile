@@ -10,6 +10,38 @@ if (!apiKey) {
   logger.error("Missing TMDB_API_KEY environment variable");
 }
 
+exports.getRecommendations = onCall(
+    {
+      enforceAppCheck: true,
+    }, async (request) => {
+      const mediaId = request.data.mediaId;
+      const mediaType = request.data.mediaType;
+
+      try {
+        // eslint-disable-next-line max-len
+        let url = `${baseURL}/${mediaType}/${mediaId}/recommendations?api_key=${apiKey}`;
+        url += "&include_adult=false";
+        url += "&language=pt-BR";
+        logger.info(`Fetching URL: ${url}`);
+        const res = await fetch(url);
+
+        if (!res) {
+          throw new Error("No response from fetch");
+        }
+
+        logger.info(`Response status: ${res.status}`);
+
+        if (!res.ok) {
+          throw new Error(`Error fetching recommendations: ${res.statusText}`);
+        }
+
+        return await res.json();
+      } catch (error) {
+        logger.error("Error fetching recommendations", error);
+      }
+    },
+);
+
 exports.getMediaByGenre = onCall(
     {
       enforceAppCheck: true,
@@ -18,10 +50,9 @@ exports.getMediaByGenre = onCall(
       const mediaType = request.data.mediaType;
 
       try {
-        // eslint-disable-next-line max-len
         let url = `${baseURL}/discover/${mediaType}?api_key=${apiKey}`;
         url += `&with_genres=${genreId}`;
-        url += "include_adult=false";
+        url += "&include_adult=false";
         url += "&language=pt-BR";
 
         logger.info(`Fetching URL: ${url}`);
@@ -34,12 +65,12 @@ exports.getMediaByGenre = onCall(
         logger.info(`Response status: ${res.status}`);
 
         if (!res.ok) {
-          throw new Error(`Error fetching movies: ${res.statusText}`);
+          throw new Error(`Error fetching medias: ${res.statusText}`);
         }
 
         return await res.json();
       } catch (error) {
-        logger.error("Error fetching movies", error);
+        logger.error("Error fetching medias", error);
       }
     },
 );
