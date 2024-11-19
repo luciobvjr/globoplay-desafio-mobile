@@ -92,19 +92,3 @@ struct HomeView: View {
 #Preview {
     //    HomeView()
 }
-
-struct MediaGridView: View {
-    let medias: [Media]
-    let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
-
-    var body: some View {
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: 16) {
-                ForEach(medias, id: \.id) { media in
-                    MediaCellView(media: media)
-                }
-            }
-            .padding()
-        }
-    }
-}
