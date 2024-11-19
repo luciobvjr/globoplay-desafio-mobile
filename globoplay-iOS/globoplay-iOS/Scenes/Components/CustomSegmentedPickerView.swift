@@ -15,7 +15,7 @@ enum MediaDetailsOption {
     var displayName: String {
         switch self {
         case .watchToo:
-            return "Assita Também"
+            return "Assista Também"
         case .details:
             return "Detalhes"
         default:
