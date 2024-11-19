@@ -5,7 +5,11 @@
 //  Created by Lucio Bueno Vieira Junior on 17/11/24.
 //
 
-enum MovieGenre: Int, CaseIterable {
+protocol Genre: Hashable {
+    var title: String { get }
+}
+
+enum MovieGenre: Int, CaseIterable, Genre {
     case animation = 16
     case comedy = 35
     case crime = 80

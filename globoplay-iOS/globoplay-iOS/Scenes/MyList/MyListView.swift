@@ -98,7 +98,7 @@ struct MyListView: View {
     
     private var tvShowListView: some View {
         ForEach(tvShows, id: \.id) { tvShow in
-            Text(tvShow.name)
+            Text(tvShow.title)
                 .onTapGesture {
                     myListViewModel.removeTvShowFromList(modelContext: modelContext, tvShow: tvShow)
                 }

@@ -5,7 +5,7 @@
 //  Created by Lucio Bueno Vieira Junior on 18/11/24.
 //
 
-enum TVShowGenre: Int, CaseIterable {
+enum TVShowGenre: Int, CaseIterable, Genre {
     case animation = 16
     case comedy = 35
     case crime = 80
