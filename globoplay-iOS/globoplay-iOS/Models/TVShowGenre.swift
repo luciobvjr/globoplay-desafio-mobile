@@ -18,7 +18,6 @@ enum TVShowGenre: Int, CaseIterable, Genre {
     case actionAndAdventure = 10759
     case kids = 10762
     case news = 10763
-    case scienceFiction = 878
     case reality = 10764
     case sciFiAndFantasy = 10765
     case soap = 10766
@@ -51,8 +50,6 @@ extension TVShowGenre {
             return "Kids"
         case .news:
             return "Notícias"
-        case .scienceFiction:
-            return "Ficção Científica"
         case .reality:
             return "Reality"
         case .sciFiAndFantasy:

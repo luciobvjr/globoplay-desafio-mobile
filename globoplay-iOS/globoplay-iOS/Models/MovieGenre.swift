@@ -26,6 +26,7 @@ enum MovieGenre: Int, CaseIterable, Genre {
     case horror = 27
     case music = 10402
     case romance = 10749
+    case scienceFiction = 878
     case tvMovie = 10770
     case thriller = 53
     case war = 10752
@@ -64,6 +65,8 @@ extension MovieGenre {
             return "Música"
         case .romance:
             return "Romance"
+        case .scienceFiction:
+            return "Ficção Científica"
         case .tvMovie:
             return "Cinema TV"
         case .thriller:

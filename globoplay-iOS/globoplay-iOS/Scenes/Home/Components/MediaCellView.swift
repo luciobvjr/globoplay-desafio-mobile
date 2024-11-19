@@ -11,16 +11,30 @@ struct MediaCellView: View {
     let baseImageURL: String = "https://image.tmdb.org/t/p/w154"
     let media: Media
     
-    var body: some View {        
-        AsyncImage(url: URL(string: baseImageURL + (media.posterPath ?? ""))) { image in
-            image
-                .resizable()
-        } placeholder: {
-            ZStack {
-                Rectangle()
-                    .foregroundStyle(Color.black.opacity(0.3))
-                
-                ProgressView()
+    var body: some View {
+        Group {
+            if let posterPath = media.posterPath {
+                AsyncImage(url: URL(string: baseImageURL + posterPath)) { image in
+                    image
+                        .resizable()
+                } placeholder: {
+                    ZStack {
+                        Rectangle()
+                            .foregroundStyle(Color.black.opacity(0.3))
+                        
+                        ProgressView()
+                    }
+                }
+            } else {
+                ZStack {
+                    Rectangle()
+                        .foregroundStyle(Color.black.opacity(0.3))
+                    
+                    Text(media.title)
+                        .font(.caption)
+                        .padding(.horizontal, 4)
+                        .multilineTextAlignment(.center)
+                }
             }
         }
         .frame(width: 100, height: 126)
