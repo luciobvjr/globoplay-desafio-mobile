@@ -10,15 +10,16 @@ if (!apiKey) {
   logger.error("Missing TMDB_API_KEY environment variable");
 }
 
-exports.getMoviesByGenre = onCall(
+exports.getMediaByGenre = onCall(
     {
       enforceAppCheck: true,
     }, async (request) => {
       const genreId = request.data.genreId;
+      const mediaType = request.data.mediaType;
 
       try {
         // eslint-disable-next-line max-len
-        const url = `${baseURL}/discover/movie?api_key=${apiKey}&with_genres=${genreId}&include_adult=false`;
+        const url = `${baseURL}/discover/${mediaType}?api_key=${apiKey}&with_genres=${genreId}&include_adult=false`;
         logger.info(`Fetching URL: ${url}`);
         const res = await fetch(url);
 

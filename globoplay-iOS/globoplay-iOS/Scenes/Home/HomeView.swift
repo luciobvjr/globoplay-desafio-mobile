@@ -33,10 +33,8 @@ struct HomeView: View {
                 try await homeViewModel.getTvShows(page: 1)
             }
         }
-        .task {
-            for genre in MovieGenre.allCases {
-                try? await homeViewModel.getMoviesByGenre(genre: genre, page: 1)
-            }
+        .task(id: homeViewModel.selectedMediaType) {
+            try? await homeViewModel.getAllMediaByGenre(page: 1)
         }
     }
     

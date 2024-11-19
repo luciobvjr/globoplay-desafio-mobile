@@ -38,10 +38,9 @@ struct MediaByGenreView: View {
                             MediaCellView(media: movie)
                         }
                     } else if let tvShowGenre = genre as? TVShowGenre {
-                        Text(tvShowGenre.title)
-//                        ForEach(homeViewModel.tvShowsByGenre[tvShowGenre] ?? [], id: \.id) { tvShow in
-//                            MediaCellView(media: tvShow)
-//                        }
+                        ForEach(homeViewModel.tvShowsByGenre[tvShowGenre] ?? [], id: \.id) { tvShow in
+                            MediaCellView(media: tvShow)
+                        }
                     }
                 }
                 .frame(minHeight: 118)

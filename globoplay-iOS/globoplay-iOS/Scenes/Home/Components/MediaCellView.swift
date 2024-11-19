@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MediaCellView: View {
-    let baseImageURL: String = "https://image.tmdb.org/t/p/original"
+    let baseImageURL: String = "https://image.tmdb.org/t/p/w154"
     let media: Media
     
     var body: some View {        
