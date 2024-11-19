@@ -25,4 +25,23 @@ class MediaDetailsViewModel {
             print("Error getting recomendations: \(error)")
         }
     }
+    
+    func formatDate(dateString: String) -> String {
+        let splitted = dateString.split(separator: "-")
+        return [splitted[2], splitted[1], splitted[0]].joined(separator: "/")
+    }
+    
+    func getGenresText(genreIds: [Int], mediaType: MediaType) -> String {
+        var splitted: [String] = []
+        
+        for genre in MovieGenre.allCases where genreIds.contains(genre.rawValue) {
+            splitted.append(genre.title)
+        }
+        
+        for genre in TVShowGenre.allCases where genreIds.contains(genre.rawValue) {
+            splitted.append(genre.title)
+        }
+     
+        return splitted.joined(separator: ", ")
+    }
 }

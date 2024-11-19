@@ -61,9 +61,16 @@ struct MediaDetailsView: View {
                 CustomSegmentedPickerView(selectedMediaType: .constant(.none),
                                           selectedMediaDetailsOption: $mediaDetailsViewModel.selectedMediaDetailsOption)
                 
-                if mediaDetailsViewModel.selectedMediaDetailsOption == .watchToo {
-                    MediaGridView(medias: mediaDetailsViewModel.recommendations, selectedMediaType: selectedMediaType)
+                Group {
+                    if mediaDetailsViewModel.selectedMediaDetailsOption == .watchToo {
+                        MediaGridView(medias: mediaDetailsViewModel.recommendations, selectedMediaType: selectedMediaType)
+                    }
+                    
+                    if mediaDetailsViewModel.selectedMediaDetailsOption == .details {
+                        detailsView
+                    }
                 }
+                .background(Color.background)
             }
         }
         .task {
@@ -125,13 +132,30 @@ struct MediaDetailsView: View {
             .background(RoundedRectangle(cornerRadius: 8).stroke())
         }
     }
-}
-
-#Preview {
-    let tvShow = TVShow(id: 1184918,
-                        title: "Robô Selvagem",
-                        genreIds: [16, 878, 10751],
-                        posterPath: "/gAHNIZKG8fmK7njOTpMmLKJXiag.jpg",
-                        overview: "Um robô – unidade ROZZUM 7134, abreviadamente “Roz” – naufraga em uma ilha desabitada e deve aprender a se adaptar ao ambiente hostil, gradualmente construindo relacionamentos com os animais da ilha e se tornando o pai adotivo de um filhote de ganso órfão.")
-    MediaDetailsView(media: tvShow, selectedMediaType: .tv)
+    
+    @ViewBuilder
+    var detailsView: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            if let originalTitle = media.originalTitle {
+                Text("Título original: \(originalTitle)")
+            }
+            
+            Text("Gêneros: \(mediaDetailsViewModel.getGenresText(genreIds: media.genreIds, mediaType: selectedMediaType))")
+            
+            if let releaseDate = media.releaseDate {
+                Text("Data de lançamento: \(mediaDetailsViewModel.formatDate(dateString: releaseDate))")
+            }
+            
+            if let voteAverage = media.voteAverage {
+                Text("Nota Média: \(voteAverage.formatted())")
+            }
+            
+            if let voteCount = media.voteCount {
+                Text("Total de Votos: \(voteCount)")
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.horizontal, 8)
+        .padding(.vertical, 16)
+    }
 }

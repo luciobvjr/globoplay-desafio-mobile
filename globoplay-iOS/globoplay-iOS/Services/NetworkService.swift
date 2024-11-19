@@ -40,21 +40,21 @@ struct NetworkService: NetworkServiceProtocol {
     func getMediaByGenre(genre: any Genre, mediaType: MediaType, page: Int) async throws -> [Media] {
         if mediaType == .movie, let movieGenre = genre as? MovieGenre {
             let response = try await functions.httpsCallable("getMediaByGenre").call(["genreId": movieGenre.rawValue,
-                                                                                       "mediaType": mediaType.rawValue])
+                                                                                      "mediaType": mediaType.rawValue])
             let parsedResponse: SearchResponse<Movie>? = parseResponse(response: response)
             return parsedResponse?.results ?? []
         }
         
         if mediaType == .tv, let tvShowGenre = genre as? TVShowGenre {
             let response = try await functions.httpsCallable("getMediaByGenre").call(["genreId": tvShowGenre.rawValue,
-                                                                                       "mediaType": mediaType.rawValue])
+                                                                                      "mediaType": mediaType.rawValue])
             let parsedResponse: SearchResponse<TVShow>? = parseResponse(response: response)
             return parsedResponse?.results ?? []
         }
         
         return []
     }
-        
+    
     func searchForMovies(searchTerm: String, page: Int) async throws -> [Movie] {
         let query = searchTerm + "&include_adult=false&language=pt-BR&page=\(page)"
         let response = try await functions.httpsCallable("searchForMovies").call(["query": query])
