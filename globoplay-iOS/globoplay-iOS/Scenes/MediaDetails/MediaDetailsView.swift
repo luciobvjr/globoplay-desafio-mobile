@@ -56,6 +56,8 @@ struct MediaDetailsView: View {
                     .padding(.horizontal, 8)
                 
                 myListButton
+                
+                
             }
         }
     }
