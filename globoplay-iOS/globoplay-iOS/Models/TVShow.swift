@@ -12,7 +12,7 @@ class TVShow: Decodable, Media {
     var id: Int
     var title: String
     var genreIds: [Int]
-    var posterPath: String
+    var posterPath: String?
     
     enum CodingKeys: String, CodingKey {
         case id, title = "name", genreIds = "genre_ids", posterPath = "poster_path"
@@ -23,6 +23,6 @@ class TVShow: Decodable, Media {
         self.id = try container.decode(Int.self, forKey: .id)
         self.title = try container.decode(String.self, forKey: .title)
         self.genreIds = try container.decode([Int].self, forKey: .genreIds)
-        self.posterPath = try container.decode(String.self, forKey: .posterPath)
+        self.posterPath = try? container.decode(String.self, forKey: .posterPath)
     }
 }

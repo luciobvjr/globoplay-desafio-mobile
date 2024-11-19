@@ -19,7 +19,11 @@ exports.getMediaByGenre = onCall(
 
       try {
         // eslint-disable-next-line max-len
-        const url = `${baseURL}/discover/${mediaType}?api_key=${apiKey}&with_genres=${genreId}&include_adult=false`;
+        let url = `${baseURL}/discover/${mediaType}?api_key=${apiKey}`;
+        url += `&with_genres=${genreId}`;
+        url += "include_adult=false";
+        url += "&language=pt-BR";
+
         logger.info(`Fetching URL: ${url}`);
         const res = await fetch(url);
 

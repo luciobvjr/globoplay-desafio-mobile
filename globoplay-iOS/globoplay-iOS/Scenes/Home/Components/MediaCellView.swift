@@ -12,7 +12,7 @@ struct MediaCellView: View {
     let media: Media
     
     var body: some View {        
-        AsyncImage(url: URL(string: baseImageURL + media.posterPath)) { image in
+        AsyncImage(url: URL(string: baseImageURL + (media.posterPath ?? ""))) { image in
             image
                 .resizable()
         } placeholder: {
