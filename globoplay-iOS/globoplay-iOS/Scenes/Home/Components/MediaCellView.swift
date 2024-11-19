@@ -15,8 +15,8 @@ struct MediaCellView: View {
     
     var body: some View {
         Group {
-            if !media.posterPath.isEmpty {
-                AsyncImage(url: URL(string: baseImageURL + media.posterPath)) { image in
+            if let posterPath = media.posterPath, !posterPath.isEmpty {
+                AsyncImage(url: URL(string: baseImageURL + posterPath)) { image in
                     image
                         .resizable()
                 } placeholder: {

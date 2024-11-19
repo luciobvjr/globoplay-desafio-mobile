@@ -33,7 +33,7 @@ struct MediaByGenreView: View {
             ScrollView(.horizontal) {
                 LazyHStack {
                     if homeViewModel.selectedMediaType == .movie,
-                        let movieGenre = genre as? MovieGenre {
+                       let movieGenre = genre as? MovieGenre {
                         ForEach(homeViewModel.moviesByGenre[movieGenre] ?? [], id: \.id) { movie in
                             NavigationLink {
                                 MediaDetailsView(media: movie, selectedMediaType: .movie)
@@ -41,7 +41,8 @@ struct MediaByGenreView: View {
                                 MediaCellView(media: movie)
                             }
                         }
-                    } else if let tvShowGenre = genre as? TVShowGenre {
+                    } else if homeViewModel.selectedMediaType == .tv,
+                              let tvShowGenre = genre as? TVShowGenre {
                         ForEach(homeViewModel.tvShowsByGenre[tvShowGenre] ?? [], id: \.id) { tvShow in
                             NavigationLink {
                                 MediaDetailsView(media: tvShow, selectedMediaType: .tv)

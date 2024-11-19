@@ -10,7 +10,9 @@ import SwiftUI
 struct MediaGridView: View {
     let medias: [Media]
     let selectedMediaType: MediaType
-    let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    let columns = [GridItem(.flexible(), spacing: 16),
+                   GridItem(.flexible(), spacing: 16),
+                   GridItem(.flexible())]
 
     var body: some View {
         ScrollView {

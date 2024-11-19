@@ -22,7 +22,7 @@ struct HomeView: View {
                                   homeViewModel.searchedMovies : homeViewModel.searchedTvShows,
                                   selectedMediaType: homeViewModel.selectedMediaType)
                 } else {
-                    mediaByGenreView
+                    MediaByGenreView(homeViewModel: $homeViewModel)
                 }
             }
             .padding()
@@ -34,14 +34,6 @@ struct HomeView: View {
         }
         .task(id: homeViewModel.selectedMediaType) {
             try? await homeViewModel.getAllMediaByGenre(page: 1)
-        }
-    }
-    
-    private var mediaByGenreView: some View {
-        if homeViewModel.selectedMediaType == .movie {
-            MediaByGenreView(homeViewModel: $homeViewModel)
-        } else {
-            MediaByGenreView(homeViewModel: $homeViewModel)
         }
     }
     
@@ -62,9 +54,7 @@ struct HomeView: View {
         let isSelected = homeViewModel.selectedMediaType == mediaType
         
         Button {
-            withAnimation {
-                homeViewModel.selectedMediaType = mediaType
-            }
+            homeViewModel.selectedMediaType = mediaType
         } label: {
             VStack {
                 Text(mediaType.displayName)

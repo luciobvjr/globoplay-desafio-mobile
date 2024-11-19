@@ -57,7 +57,7 @@ extension TVShowGenre {
         case .soap:
             return "Soap"
         case .talk:
-            return "Talk"
+            return "Talk Show"
         case .warAndPolitics:
             return "Guerra e Política"
         }
