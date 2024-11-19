@@ -15,7 +15,8 @@ struct HomeView: View {
             VStack {
                 searchBarView(prompt: "Pesquise por filmes ou séries")
                 
-                CustomSegmentedPickerView(selectedMediaType: $homeViewModel.selectedMediaType)
+                CustomSegmentedPickerView(selectedMediaType: $homeViewModel.selectedMediaType,
+                                          selectedMediaDetailsOption: .constant(.none))
                 
                 if homeViewModel.isSearching {
                     MediaGridView(medias: homeViewModel.selectedMediaType == .movie ?

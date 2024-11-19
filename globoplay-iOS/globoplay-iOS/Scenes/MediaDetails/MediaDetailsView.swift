@@ -8,9 +8,15 @@
 import SwiftUI
 import SwiftData
 
+@Observable
+class MediaDetailsViewModel {
+    var selectedMediaDetailsOption: MediaDetailsOption = .watchToo
+}
+
 struct MediaDetailsView: View {
     @Environment(\.modelContext) var modelContext
     
+    @State private var mediaDetailsViewModel: MediaDetailsViewModel = .init()
     @State private var myListViewModel: MyListViewModel = .init()
     
     @Query var movies: [Movie]
@@ -57,7 +63,8 @@ struct MediaDetailsView: View {
                 
                 myListButton
                 
-                
+                CustomSegmentedPickerView(selectedMediaType: .constant(.none),
+                                          selectedMediaDetailsOption: $mediaDetailsViewModel.selectedMediaDetailsOption)
             }
         }
     }

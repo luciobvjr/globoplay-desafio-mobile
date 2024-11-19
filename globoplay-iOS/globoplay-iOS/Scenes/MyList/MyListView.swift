@@ -20,7 +20,8 @@ struct MyListView: View {
             VStack {
                 searchBarView(prompt: "Pesquise por filmes ou séries")
                 
-                CustomSegmentedPickerView(selectedMediaType: $myListViewModel.selectedMediaType)
+                CustomSegmentedPickerView(selectedMediaType: $myListViewModel.selectedMediaType,
+                                          selectedMediaDetailsOption: .constant(.none))
                 
                 if myListViewModel.selectedMediaType == .movie {
                     MediaGridView(medias: myListViewModel.filteredMovies,
