@@ -26,12 +26,12 @@ struct MediaDetailsView: View {
     }
     
     var overView: String {
-        guard let overview = media.overview, !overview.isEmpty else { return "Descrição indisponível" }
-        return overview
+        guard !media.overview.isEmpty else { return "Descrição indisponível" }
+        return media.overview
     }
     
     var myListButtonTitle: String {
-        guard let queryMedia else {
+        guard queryMedia != nil else {
            return "Minha Lista"
         }
         
@@ -39,7 +39,7 @@ struct MediaDetailsView: View {
     }
     
     var myListButtonImageName: String {
-        guard let queryMedia else {
+        guard queryMedia != nil else {
            return "star.fill"
         }
         
