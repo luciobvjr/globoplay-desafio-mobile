@@ -16,14 +16,18 @@ class HomeViewModel {
         self.networkService = networkService
     }
     
-    var movies: [Movie] = []
+    var searchedMovies: [Movie] = []
     var moviesByGenre: [MovieGenre:[Movie]] = [:]
     
-    var tvShows: [TVShow] = []
+    var searchedTvShows: [TVShow] = []
     var tvShowsByGenre: [TVShowGenre:[TVShow]] = [:]
     
     var selectedMediaType: MediaType = .movie
     var debouncedSearchTerm: String = ""
+    
+    var isSearching: Bool {
+        !searchTerm.isEmpty
+    }
     
     var searchTerm: String = "" {
         didSet {
@@ -43,7 +47,7 @@ class HomeViewModel {
         
         searchForMoviesTask = Task {
             do {
-                movies = try await networkService.searchForMovies(searchTerm: debouncedSearchTerm, page: page)
+                searchedMovies = try await networkService.searchForMovies(searchTerm: debouncedSearchTerm, page: page)
             } catch {
                 print(error)
             }
@@ -55,7 +59,7 @@ class HomeViewModel {
         
         searchForTVShowsTask = Task {
             do {
-                tvShows = try await networkService.searchForTVShows(searchTerm: debouncedSearchTerm, page: page)
+                searchedTvShows = try await networkService.searchForTVShows(searchTerm: debouncedSearchTerm, page: page)
             } catch {
                 print(error)
             }

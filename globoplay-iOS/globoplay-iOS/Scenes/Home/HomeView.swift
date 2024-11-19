@@ -18,27 +18,33 @@ struct HomeView: View {
                 
                 customSegmentedPickerView
                 
-                if homeViewModel.selectedMediaType == .movie {
-                    MediaByGenreView(homeViewModel: $homeViewModel)
+                if homeViewModel.isSearching {
+                    MediaGridView(medias: homeViewModel.selectedMediaType == .movie ?
+                                  homeViewModel.searchedMovies : homeViewModel.searchedTvShows)
                 } else {
-                    MediaByGenreView(homeViewModel: $homeViewModel)
+                    mediaByGenreView
                 }
             }
             .padding()
         }
         .background(Color.background)
-        .onChange(of: homeViewModel.debouncedSearchTerm) { _, newValue in
-            Task {
-                try await homeViewModel.getMovies(page: 1)
-                try await homeViewModel.getTvShows(page: 1)
-            }
+        .task(id: homeViewModel.debouncedSearchTerm) {
+            try? await homeViewModel.getMovies(page: 1)
+            try? await homeViewModel.getTvShows(page: 1)
         }
         .task(id: homeViewModel.selectedMediaType) {
             try? await homeViewModel.getAllMediaByGenre(page: 1)
         }
     }
     
-    // MARK: - View components
+    private var mediaByGenreView: some View {
+        if homeViewModel.selectedMediaType == .movie {
+            MediaByGenreView(homeViewModel: $homeViewModel)
+        } else {
+            MediaByGenreView(homeViewModel: $homeViewModel)
+        }
+    }
+    
     private var customSegmentedPickerView: some View {
         HStack {
             Group {
@@ -85,4 +91,20 @@ struct HomeView: View {
 
 #Preview {
     //    HomeView()
+}
+
+struct MediaGridView: View {
+    let medias: [Media]
+    let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+
+    var body: some View {
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: 16) {
+                ForEach(medias, id: \.id) { media in
+                    MediaCellView(media: media)
+                }
+            }
+            .padding()
+        }
+    }
 }

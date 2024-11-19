@@ -23,7 +23,7 @@ struct MediaCellView: View {
                 ProgressView()
             }
         }
-        .frame(width: 92, height: 118)
+        .frame(width: 100, height: 126)
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .padding(.trailing, 8)
     }
