@@ -21,7 +21,10 @@ struct TabBarView: View {
         TabView {
             Tab {
                 NavigationStack {
-                    HomeView()
+                    VStack {
+                        header
+                        HomeView()
+                    }
                 }
             } label: {
                 Label {
@@ -33,7 +36,10 @@ struct TabBarView: View {
             
             Tab {
                 NavigationStack {
-                    MyListView()
+                    VStack {
+                        header
+                        MyListView()
+                    }
                 }
             } label: {
                 Label {
@@ -51,7 +57,10 @@ struct TabBarView: View {
     private var tabBarView: some View {
         TabView {
             NavigationStack {
-                HomeView()
+                VStack {
+                    header
+                    HomeView()
+                }
             }
             .tabItem {
                 Label {
@@ -62,7 +71,10 @@ struct TabBarView: View {
             }
             
             NavigationStack {
-                MyListView()
+                VStack {
+                    header
+                    MyListView()
+                }
             }
             .tabItem {
                 Label {
@@ -71,6 +83,18 @@ struct TabBarView: View {
                     Image(systemName: "star")
                 }
             }
+        }
+    }
+    
+    private var header: some View {
+        ZStack {
+            Rectangle()
+                .foregroundStyle(Color.black)
+                .frame(height: 70)
+            
+            Image("globoplay-logo")
+                .resizable()
+                .frame(width: 182, height: 40)
         }
     }
 }

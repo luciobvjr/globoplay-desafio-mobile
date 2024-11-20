@@ -20,13 +20,36 @@ class MyListViewModel {
         filteredTvShows = tvShows.filter({ $0.title.contains(searchTerm) })
     }
     
-    func removeMovieFromList(modelContext: ModelContext, movie: Movie) {
-        modelContext.delete(movie)
-        try? modelContext.save()
+    func saveMediaToList(modelContext: ModelContext, media: Media, mediaType: MediaType) {
+        if mediaType == .tv, let tvShow = media as? TVShow {
+            modelContext.insert(tvShow)
+        }
+        
+        if mediaType == .movie, let movie = media as? Movie {
+            modelContext.insert(movie)
+        }
+        
+        do {
+            try modelContext.save()
+        } catch {
+            print("Failed to save after delete: \(error)")
+        }
     }
     
-    func removeTvShowFromList(modelContext: ModelContext, tvShow: TVShow) {
-        modelContext.delete(tvShow)
-        try? modelContext.save()
+    func removeMediaFromList(modelContext: ModelContext, media: Media, mediaType: MediaType) {
+        let media = media
+        if mediaType == .tv, let tvShow = media as? TVShow {
+            modelContext.delete(tvShow)
+        }
+        
+        if mediaType == .movie, let movie = media as? Movie {
+            modelContext.delete(movie)
+        }
+        
+        do {
+            try modelContext.save()
+        } catch {
+            print("Failed to save after delete: \(error)")
+        }
     }
 }

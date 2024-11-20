@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct HomeView: View {
-    @Environment(\.modelContext) var modelContext
     @State private var homeViewModel: HomeViewModel = .init(networkService: NetworkService())
     
     var body: some View {
@@ -16,13 +15,15 @@ struct HomeView: View {
             VStack {
                 searchBarView(prompt: "Pesquise por filmes ou séries")
                 
-                customSegmentedPickerView
+                CustomSegmentedPickerView(selectedMediaType: $homeViewModel.selectedMediaType,
+                                          selectedMediaDetailsOption: .constant(.none))
                 
                 if homeViewModel.isSearching {
                     MediaGridView(medias: homeViewModel.selectedMediaType == .movie ?
-                                  homeViewModel.searchedMovies : homeViewModel.searchedTvShows)
+                                  homeViewModel.searchedMovies : homeViewModel.searchedTvShows,
+                                  selectedMediaType: homeViewModel.selectedMediaType)
                 } else {
-                    mediaByGenreView
+                    MediaByGenreView(homeViewModel: $homeViewModel)
                 }
             }
             .padding()
@@ -34,46 +35,6 @@ struct HomeView: View {
         }
         .task(id: homeViewModel.selectedMediaType) {
             try? await homeViewModel.getAllMediaByGenre(page: 1)
-        }
-    }
-    
-    private var mediaByGenreView: some View {
-        if homeViewModel.selectedMediaType == .movie {
-            MediaByGenreView(homeViewModel: $homeViewModel)
-        } else {
-            MediaByGenreView(homeViewModel: $homeViewModel)
-        }
-    }
-    
-    private var customSegmentedPickerView: some View {
-        HStack {
-            Group {
-                segmentedPickerButton(mediaType: .movie)
-                
-                segmentedPickerButton(mediaType: .tv)
-            }
-            .frame(height: 80)
-        }
-        .frame(maxWidth: .infinity)
-    }
-    
-    @ViewBuilder
-    private func segmentedPickerButton(mediaType: MediaType) -> some View {
-        let isSelected = homeViewModel.selectedMediaType == mediaType
-        
-        Button {
-            withAnimation {
-                homeViewModel.selectedMediaType = mediaType
-            }
-        } label: {
-            VStack {
-                Text(mediaType.displayName)
-                
-                Rectangle()
-                    .frame(height: 2)
-                    .opacity(isSelected ? 1 : 0)
-            }
-            .foregroundStyle(isSelected ? Color.white : Color.gray)
         }
     }
     
@@ -91,20 +52,4 @@ struct HomeView: View {
 
 #Preview {
     //    HomeView()
-}
-
-struct MediaGridView: View {
-    let medias: [Media]
-    let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
-
-    var body: some View {
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: 16) {
-                ForEach(medias, id: \.id) { media in
-                    MediaCellView(media: media)
-                }
-            }
-            .padding()
-        }
-    }
 }

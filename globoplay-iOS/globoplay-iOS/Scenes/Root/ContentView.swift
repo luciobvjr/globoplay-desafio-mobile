@@ -11,10 +11,12 @@ struct ContentView: View {
     @State private var isShowingSplashScreen: Bool = true
     
     var body: some View {
-        if isShowingSplashScreen {
+        ZStack {
             splashScreen
-        } else {
+                .opacity(isShowingSplashScreen ? 1 : 0)
+            
             TabBarView()
+                .opacity(isShowingSplashScreen ? 0 : 1)
         }
     }
     

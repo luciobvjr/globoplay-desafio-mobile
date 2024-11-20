@@ -182,11 +182,12 @@
 			};
 			buildConfigurationList = 334CC6DC2CE3EBB800ABC543 /* Build configuration list for PBXProject "globoplay-iOS" */;
 			compatibilityVersion = "Xcode 15.0";
-			developmentRegion = en;
+			developmentRegion = "pt-BR";
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				"pt-BR",
 			);
 			mainGroup = 334CC6D82CE3EBB800ABC543;
 			minimizedProjectReferenceProxies = 1;

@@ -6,7 +6,7 @@
 //
 
 enum MediaType: String, CaseIterable, Identifiable {
-    case tv, movie
+    case tv, movie, none
     
     var id: Self { self }
     
@@ -16,6 +16,8 @@ enum MediaType: String, CaseIterable, Identifiable {
             return "Séries"
         case .movie:
             return "Filmes"
+        default:
+            return ""
         }
     }
 }

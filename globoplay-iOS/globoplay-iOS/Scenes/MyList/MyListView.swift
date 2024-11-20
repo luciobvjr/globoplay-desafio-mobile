@@ -20,12 +20,15 @@ struct MyListView: View {
             VStack {
                 searchBarView(prompt: "Pesquise por filmes ou séries")
                 
-                customSegmentedPickerView
+                CustomSegmentedPickerView(selectedMediaType: $myListViewModel.selectedMediaType,
+                                          selectedMediaDetailsOption: .constant(.none))
                 
                 if myListViewModel.selectedMediaType == .movie {
-                    movieListView
+                    MediaGridView(medias: myListViewModel.filteredMovies,
+                                  selectedMediaType: .movie)
                 } else {
-                    tvShowListView
+                    MediaGridView(medias: myListViewModel.filteredTvShows,
+                                  selectedMediaType: .tv)
                 }
             }
             .padding()
@@ -33,48 +36,18 @@ struct MyListView: View {
         .background(Color.background)
         .task(id: movies) {
             myListViewModel.filteredMovies = movies
+            myListViewModel.filteredTvShows = tvShows
         }
         .onChange(of: myListViewModel.searchTerm) { _, searchTerm in
             guard !searchTerm.isEmpty else {
                 myListViewModel.filteredMovies = movies
                 return
             }
-            myListViewModel.search(searchTerm: searchTerm, movies: movies, tvShows: [])
+            myListViewModel.search(searchTerm: searchTerm, movies: movies, tvShows: tvShows)
         }
     }
     
     // MARK: - View components
-    private var customSegmentedPickerView: some View {
-        HStack {
-            Group {
-                segmentedPickerButton(mediaType: .movie)
-                
-                segmentedPickerButton(mediaType: .tv)
-            }
-            .frame(height: 80)
-        }
-        .frame(maxWidth: .infinity)
-    }
-    
-    @ViewBuilder
-    private func segmentedPickerButton(mediaType: MediaType) -> some View {
-        let isSelected = myListViewModel.selectedMediaType == mediaType
-        
-        Button {
-            withAnimation {
-                myListViewModel.selectedMediaType = mediaType
-            }
-        } label: {
-            VStack {
-                Text(mediaType.displayName)
-                
-                Rectangle()
-                    .frame(height: 2)
-                    .opacity(isSelected ? 1 : 0)
-            }
-            .foregroundStyle(isSelected ? Color.white : Color.gray)
-        }
-    }
     
     private func searchBarView(prompt: String) -> some View {
         ZStack {
@@ -84,24 +57,6 @@ struct MyListView: View {
             
             TextField("", text: $myListViewModel.searchTerm, prompt: Text(prompt))
                 .padding(.horizontal)
-        }
-    }
-    
-    private var movieListView: some View {
-        ForEach(myListViewModel.filteredMovies, id: \.id) { movie in
-            Text(movie.title)
-                .onTapGesture {
-                    myListViewModel.removeMovieFromList(modelContext: modelContext, movie: movie)
-                }
-        }
-    }
-    
-    private var tvShowListView: some View {
-        ForEach(tvShows, id: \.id) { tvShow in
-            Text(tvShow.title)
-                .onTapGesture {
-                    myListViewModel.removeTvShowFromList(modelContext: modelContext, tvShow: tvShow)
-                }
         }
     }
 }
