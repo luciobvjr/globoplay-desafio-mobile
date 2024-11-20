@@ -32,16 +32,20 @@ class MediaDetailsViewModel {
     }
     
     func getGenresText(genreIds: [Int], mediaType: MediaType) -> String {
-        var splitted: [String] = []
+        var genres: [String] = []
         
         for genre in MovieGenre.allCases where genreIds.contains(genre.rawValue) {
-            splitted.append(genre.title)
+            if !genres.contains(genre.title) {
+                genres.append(genre.title)
+            }
         }
-        
+
         for genre in TVShowGenre.allCases where genreIds.contains(genre.rawValue) {
-            splitted.append(genre.title)
+            if !genres.contains(genre.title) {
+                genres.append(genre.title)
+            }
         }
-     
-        return splitted.joined(separator: ", ")
+
+        return genres.joined(separator: ", ")
     }
 }

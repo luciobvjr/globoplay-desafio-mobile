@@ -182,11 +182,12 @@
 			};
 			buildConfigurationList = 334CC6DC2CE3EBB800ABC543 /* Build configuration list for PBXProject "globoplay-iOS" */;
 			compatibilityVersion = "Xcode 15.0";
-			developmentRegion = en;
+			developmentRegion = "pt-BR";
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				"pt-BR",
 			);
 			mainGroup = 334CC6D82CE3EBB800ABC543;
 			minimizedProjectReferenceProxies = 1;
@@ -378,7 +379,6 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "globoplay-iOS/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Globoplay Test";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -416,7 +416,6 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "globoplay-iOS/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Globoplay Test";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
